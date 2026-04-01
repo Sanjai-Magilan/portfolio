@@ -526,11 +526,33 @@ button {
 }
 
 .skill-group li {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   padding: 0.5rem 0.72rem;
   border-radius: 999px;
   border: 1px solid var(--line);
   color: var(--text-soft);
   background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skill-group li:hover {
+    transform: translateY(-4px) scale(1.05);
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--accent) 58%, var(--line));
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 18%, transparent),
+      color-mix(in srgb, var(--accent-strong) 12%, transparent)
+    );
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.2),
+      0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent),
+      0 0 18px color-mix(in srgb, var(--accent) 24%, transparent);
+  }
 }
 
 .projects-grid {
