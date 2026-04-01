@@ -702,25 +702,42 @@ button {
 .contact-links a {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1rem;
+  gap: 0.45rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.05rem;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
   transition:
     transform var(--transition),
-    border-color var(--transition);
+    border-color var(--transition),
+    background-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .contact-links a:hover {
   transform: translateY(-2px);
   border-color: rgba(48, 227, 202, 0.35);
+  background: rgba(48, 227, 202, 0.08);
+  box-shadow: 0 16px 30px rgba(9, 17, 31, 0.22);
+}
+
+.contact-links a span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-links svg {
-  width: 1rem;
-  height: 1rem;
-  fill: currentColor;
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.contact-links a:hover svg {
+  transform: scale(1.06);
 }
 
 .footer {
