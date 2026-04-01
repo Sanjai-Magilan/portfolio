@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sanjai Magilan | Web Developer & DevOps Enthusiast</title>
+    <meta
+      name="description"
+      content="Personal portfolio of Sanjai Magilan, an ECE undergraduate focused on scalable web applications, DevOps, automation, and performance optimization."
+    />
+    <meta
+      name="keywords"
+      content="Sanjai Magilan, developer portfolio, web developer, DevOps, automation, MERN, AWS, Linux"
+    />
+    <meta name="author" content="Sanjai Magilan" />
+    <meta property="og:title" content="Sanjai Magilan | Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Building scalable systems and automating workflows."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#09111f" />
+    <link rel="preload" href="./style.css" as="style" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sanjai Magilan",
+        "jobTitle": "Web Developer & DevOps Enthusiast",
+        "description": "ECE undergraduate with experience in scalable web applications and automation.",
+        "knowsAbout": [
+          "Python",
+          "MERN Stack",
+          "Docker",
+          "CI/CD",
+          "AWS",
+          "Linux",
+          "REST APIs",
+          "System Design"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div class="scroll-progress" aria-hidden="true">
+      <span id="scroll-progress-bar"></span>
+    </div>
+
+    <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
+      <div class="intro-terminal">
+        <div class="intro-terminal__header">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="intro-terminal__body" id="intro-lines"></div>
+      </div>
+    </div>
+
+    <!-- Sticky navigation -->
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary">
+        <a class="brand" href="#home" aria-label="Go to homepage">
+          <span class="brand__mark">&lt;/&gt;</span>
+          <span>Sanjai Magilan</span>
+        </a>
+
+        <div class="nav__links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Leadership</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Toggle color theme"
+          title="Toggle color theme"
+        >
+          <span class="theme-toggle__sun">Light</span>
+          <span class="theme-toggle__moon">Dark</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="home">
+      <!-- Hero -->
+      <section class="hero section">
+        <div class="container hero__grid">
+          <div class="hero__content reveal">
+            <p class="eyebrow">Developer Portfolio / 2026</p>
+            <h1>Sanjai Magilan</h1>
+            <p class="hero__title">
+              <span id="typing-text">Web Developer</span>
+              <span class="typing-cursor" aria-hidden="true"></span>
+            </p>
+            <p class="hero__tagline">
+              "Building scalable systems and automating workflows"
+            </p>
+            <p class="hero__copy">
+              ECE undergraduate crafting fast web applications, automation
+              tools, and DevOps-friendly systems with a focus on measurable
+              impact.
+            </p>
+
+            <div class="hero__actions">
+              <a class="button button--primary" href="#projects">View Projects</a>
+              <a class="button button--secondary" href="#contact">Get In Touch</a>
+            </div>
+
+            <ul class="hero__highlights" aria-label="Key highlights">
+              <li>60% automation improvement</li>
+              <li>13-member team lead</li>
+              <li>1st Prize Hackathon</li>
+            </ul>
+          </div>
+
+          <aside class="hero__panel reveal" aria-label="Developer snapshot">
+            <div class="terminal-card">
+              <div class="terminal-card__bar">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="terminal-card__content">
+                <p>$ whoami</p>
+                <strong>Sanjai Magilan</strong>
+                <p>$ focus --current</p>
+                <strong>Scalable apps, automation, DevOps</strong>
+                <p>$ impact --top</p>
+                <strong>Reduced manual processes by 60%</strong>
+              </div>
+            </div>
+
+            <div class="hero-stats">
+              <article class="stat-chip">
+                <strong>60%</strong>
+                <span>Manual work reduced</span>
+              </article>
+              <article class="stat-chip">
+                <strong>50%</strong>
+                <span>Faster bug resolution</span>
+              </article>
+              <article class="stat-chip">
+                <strong>40%</strong>
+                <span>Productivity increase</span>
+              </article>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Impact metrics -->
+      <section class="impact section" id="impact">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Impact</p>
+            <h2>Measured outcomes, not just activity</h2>
+          </div>
+
+          <div class="impact-grid">
+            <article class="impact-card reveal">
+              <span class="impact-card__value">60%</span>
+              <h3>Manual Work Reduced</h3>
+              <p>Automation-first workflows replaced repetitive developer tasks.</p>
+            </article>
+            <article class="impact-card reveal">
+              <span class="impact-card__value">50%</span>
+              <h3>Faster Bug Resolution</h3>
+              <p>Cleaner ownership and streamlined fixes improved delivery speed.</p>
+            </article>
+            <article class="impact-card reveal">
+              <span class="impact-card__value">40%</span>
+              <h3>Productivity Increase</h3>
+              <p>Team systems and tooling boosted coordination and execution.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about section" id="about">
+        <div class="container section-grid">
+          <div class="section-heading reveal">
+            <p class="eyebrow">About</p>
+            <h2>Building for reliability, speed, and scale</h2>
+          </div>
+
+          <div class="content-card reveal">
+            <p>
+              I’m an ECE undergraduate with hands-on experience building
+              scalable web applications and automation workflows. My interests
+              sit at the intersection of development and operations, especially
+              around DevOps, system design, and performance optimization.
+            </p>
+            <p>
+              I enjoy simplifying complex processes, improving delivery speed,
+              and creating systems that are easier for teams to maintain. One
+              of my strongest wins so far was reducing manual processes by 60%
+              through automation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="skills section" id="skills">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Skills</p>
+            <h2>Core tools across development and operations</h2>
+          </div>
+
+          <div class="skills-grid">
+            <article class="skill-group reveal">
+              <h3>Languages</h3>
+              <ul>
+                <li>Python</li>
+                <li>C</li>
+                <li>C++</li>
+                <li>Java</li>
+              </ul>
+            </article>
+            <article class="skill-group reveal">
+              <h3>Web</h3>
+              <ul>
+                <li>MERN Stack</li>
+                <li>EJS</li>
+                <li>REST APIs</li>
+              </ul>
+            </article>
+            <article class="skill-group reveal">
+              <h3>DevOps</h3>
+              <ul>
+                <li>Docker</li>
+                <li>CI/CD</li>
+                <li>Git</li>
+                <li>GitHub</li>
+                <li>AWS (EC2, S3)</li>
+                <li>Nginx</li>
+                <li>Bash</li>
+              </ul>
+            </article>
+            <article class="skill-group reveal">
+              <h3>Testing</h3>
+              <ul>
+                <li>Jest</li>
+                <li>k6</li>
+              </ul>
+            </article>
+            <article class="skill-group reveal">
+              <h3>Database</h3>
+              <ul>
+                <li>MySQL</li>
+                <li>MongoDB</li>
+              </ul>
+            </article>
+            <article class="skill-group reveal">
+              <h3>Systems</h3>
+              <ul>
+                <li>Linux customization</li>
+                <li>Performance tuning</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="projects section" id="projects">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Projects</p>
+            <h2>Projects designed around impact and execution</h2>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project-card reveal">
+              <img
+                class="project-card__thumb"
+                loading="lazy"
+                decoding="async"
+                alt="Abstract terminal illustration for AutoGitPush"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' rx='28' fill='%230d1626'/%3E%3Cpath d='M64 78h512' stroke='%2330e3ca' stroke-width='10' opacity='.5'/%3E%3Crect x='64' y='116' width='206' height='24' rx='12' fill='%23141f34'/%3E%3Crect x='64' y='164' width='350' height='24' rx='12' fill='%231f3152'/%3E%3Crect x='64' y='212' width='286' height='24' rx='12' fill='%2326c6b2' opacity='.75'/%3E%3Ccircle cx='90' cy='78' r='8' fill='%23ff7b72'/%3E%3Ccircle cx='118' cy='78' r='8' fill='%23f2cc60'/%3E%3Ccircle cx='146' cy='78' r='8' fill='%2326c6b2'/%3E%3C/svg%3E"
+              />
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <h3>AutoGitPush</h3>
+                  <a href="https://github.com/" target="_blank" rel="noreferrer">
+                    GitHub
+                  </a>
+                </div>
+                <p>
+                  Automated Git workflows using Bash to remove repetitive steps
+                  and keep developer flow fast and consistent.
+                </p>
+                <ul class="project-metrics">
+                  <li>Reduced manual effort by 60%</li>
+                  <li>VS Code extension in progress</li>
+                  <li>Bash-powered automation workflow</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <img
+                class="project-card__thumb"
+                loading="lazy"
+                decoding="async"
+                alt="Abstract dashboard illustration for Queue Management System"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' rx='28' fill='%230c1322'/%3E%3Crect x='68' y='68' width='504' height='224' rx='24' fill='%23121d33'/%3E%3Crect x='100' y='106' width='112' height='112' rx='20' fill='%2326c6b2' opacity='.85'/%3E%3Crect x='242' y='106' width='112' height='112' rx='20' fill='%231e6fff' opacity='.85'/%3E%3Crect x='384' y='106' width='112' height='112' rx='20' fill='%23f2cc60' opacity='.85'/%3E%3Cpath d='M100 256h396' stroke='%2330e3ca' stroke-width='12' stroke-linecap='round' opacity='.6'/%3E%3C/svg%3E"
+              />
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <h3>Queue Management System</h3>
+                  <span class="project-badge">Hackathon Winner</span>
+                </div>
+                <p>
+                  Login-free token system with a real-time backend using REST
+                  APIs, built to reduce confusion and improve queue flow.
+                </p>
+                <ul class="project-metrics">
+                  <li>Reduced queue confusion by 50%</li>
+                  <li>1st Prize hackathon-winning solution</li>
+                  <li>Real-time backend using REST APIs</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <img
+                class="project-card__thumb"
+                loading="lazy"
+                decoding="async"
+                alt="Abstract system layout illustration for Temple Management System"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' rx='28' fill='%230b1320'/%3E%3Crect x='84' y='92' width='472' height='176' rx='28' fill='%23111f33'/%3E%3Crect x='116' y='124' width='170' height='112' rx='18' fill='%231a2b45'/%3E%3Crect x='306' y='124' width='94' height='112' rx='18' fill='%2326c6b2' opacity='.85'/%3E%3Crect x='420' y='124' width='104' height='112' rx='18' fill='%231e6fff' opacity='.9'/%3E%3Cpath d='M116 74h142' stroke='%2330e3ca' stroke-width='12' stroke-linecap='round'/%3E%3C/svg%3E"
+              />
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <h3>Temple Management System</h3>
+                  <span class="project-badge">Team Lead</span>
+                </div>
+                <p>
+                  Led a 13-member team to build a booking and donation system
+                  with role-based access control and Google OAuth.
+                </p>
+                <ul class="project-metrics">
+                  <li>Improved productivity by 40%</li>
+                  <li>Reduced bug resolution time by 50%</li>
+                  <li>Delivered booking, donation, and access control flows</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience section" id="experience">
+        <div class="container two-column">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Leadership</p>
+            <h2>Leading teams, events, and execution</h2>
+          </div>
+
+          <div class="stack">
+            <article class="timeline-card reveal">
+              <div class="timeline-card__meta">President</div>
+              <h3>IoT Club</h3>
+              <p>
+                Led events and community efforts that increased engagement by
+                30%, while building momentum around practical innovation.
+              </p>
+            </article>
+
+            <article class="timeline-card reveal">
+              <div class="timeline-card__meta">Organizer</div>
+              <h3>Multiverse Hackathon</h3>
+              <p>
+                Organized a national-level 30-hour hackathon experience focused
+                on collaboration, speed, and high-energy problem solving.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="certifications section" id="certifications">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Certifications</p>
+            <h2>Current learning and credentials</h2>
+          </div>
+
+          <div class="cert-grid">
+            <article class="content-card reveal">
+              <h3>AWS Cloud Practitioner</h3>
+              <p>In Progress</p>
+            </article>
+            <article class="content-card reveal">
+              <h3>JLPT N5</h3>
+              <p>N4 in progress</p>
+            </article>
+            <article class="content-card reveal">
+              <h3>NPTEL HCI</h3>
+              <p>IIT Guwahati</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="contact section" id="contact">
+        <div class="container contact-card reveal">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Let’s build something reliable and impactful</h2>
+            <p>
+              Open to developer, DevOps, and systems-oriented opportunities.
+            </p>
+          </div>
+
+          <div class="contact-links">
+            <a href="mailto:hello@sanjaimagilan.dev">hello@sanjaimagilan.dev</a>
+            <a href="https://github.com/" target="_blank" rel="noreferrer">
+              <span aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M12 2C6.48 2 2 6.59 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.66-.22.66-.49 0-.24-.01-1.03-.01-1.86-2.78.62-3.36-1.22-3.36-1.22-.46-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.54 1.05 1.54 1.05.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.15-4.55-5.1 0-1.13.39-2.06 1.03-2.79-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.06A9.27 9.27 0 0 1 12 6.8c.85 0 1.71.12 2.51.35 1.91-1.34 2.75-1.06 2.75-1.06.55 1.42.2 2.47.1 2.73.64.73 1.03 1.66 1.03 2.79 0 3.96-2.34 4.83-4.57 5.08.36.32.68.94.68 1.91 0 1.38-.01 2.5-.01 2.84 0 .27.17.59.67.49A10.18 10.18 0 0 0 22 12.25C22 6.59 17.52 2 12 2Z"
+                  />
+                </svg>
+              </span>
+              GitHub
+            </a>
+            <a href="https://linkedin.com/" target="_blank" rel="noreferrer">
+              <span aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    d="M6.94 8.5a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12ZM8.5 18.5h-3.1V10h3.1v8.5ZM19 18.5h-3.09v-4.14c0-.99-.02-2.26-1.38-2.26-1.39 0-1.6 1.08-1.6 2.19v4.21H9.83V10h2.97v1.16h.04c.41-.78 1.42-1.6 2.92-1.6 3.12 0 3.7 2.05 3.7 4.72v4.22Z"
+                  />
+                </svg>
+              </span>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__content">
+        <p>© 2026 Sanjai Magilan. Built with HTML, CSS, and JavaScript.</p>
+        <a href="#home">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
