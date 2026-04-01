@@ -15,7 +15,7 @@ const roles = [
 const terminalMessages = [
   "> initializing portfolio...",
   "> loading projects...",
-  "> welcome Sanjai",
+  "> welcome to my portfolio!",
 ];
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");

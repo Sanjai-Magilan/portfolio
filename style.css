@@ -564,13 +564,91 @@ button {
 }
 
 .project-card__top {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.project-card__title-block {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.project-card__title-row {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  align-items: start;
+}
+
+.project-card__title-row h3 {
+  margin: 0;
+}
+
+.project-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
   align-items: center;
 }
 
-.project-badge,
+.project-badge {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  padding: 0.42rem 0.82rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 24px rgba(7, 12, 22, 0.18);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition),
+    background-color var(--transition);
+}
+
+.project-badge--winner {
+  color: #ffe49a;
+  border-color: rgba(255, 213, 92, 0.42);
+  background: linear-gradient(135deg, rgba(255, 206, 84, 0.24), rgba(255, 164, 27, 0.12));
+  box-shadow: 0 12px 28px rgba(255, 191, 72, 0.18);
+}
+
+.project-badge--client {
+  color: #bdf2d3;
+  border-color: rgba(77, 197, 130, 0.32);
+  background: linear-gradient(135deg, rgba(57, 166, 109, 0.2), rgba(31, 92, 63, 0.12));
+}
+
+.project-badge--lead {
+  color: #d5d6ff;
+  border-color: rgba(115, 119, 255, 0.34);
+  background: linear-gradient(135deg, rgba(68, 97, 255, 0.2), rgba(120, 83, 255, 0.12));
+}
+
+.project-card:hover .project-badge {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(7, 12, 22, 0.24);
+}
+
+.project-card:hover .project-badge--winner {
+  box-shadow: 0 16px 34px rgba(255, 191, 72, 0.28);
+}
+
+.project-card:hover .project-badge--client {
+  box-shadow: 0 16px 34px rgba(57, 166, 109, 0.24);
+}
+
+.project-card:hover .project-badge--lead {
+  box-shadow: 0 16px 34px rgba(96, 101, 255, 0.24);
+}
+
 .timeline-card__meta {
   display: inline-flex;
   width: fit-content;
@@ -755,7 +833,7 @@ button {
   }
 
   .footer__content,
-  .project-card__top {
+  .project-card__title-row {
     flex-direction: column;
     align-items: flex-start;
   }
