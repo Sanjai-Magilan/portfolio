@@ -1,3 +1,5 @@
+const introOverlay = document.getElementById("intro-overlay");
+const introLines = document.getElementById("intro-lines");
 const typingText = document.getElementById("typing-text");
 const progressBar = document.getElementById("scroll-progress-bar");
 const revealElements = document.querySelectorAll(".reveal");
@@ -7,6 +9,12 @@ const roles = [
   "Automation Builder",
   "Backend-Focused Problem Solver",
   "Scalable Systems Enthusiast",
+];
+
+const terminalMessages = [
+  "> booting portfolio...",
+  "> loading modules: about, skills, projects...",
+  "> status: ready",
 ];
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -52,6 +60,33 @@ function startRoleTyping() {
   tick();
 }
 
+async function typeText(element, text, speed) {
+  for (let index = 0; index < text.length; index += 1) {
+    element.textContent += text[index];
+    await wait(speed);
+  }
+}
+
+async function playIntro() {
+  if (!introOverlay || !introLines) return;
+
+  if (prefersReducedMotion.matches) {
+    introOverlay.classList.add("is-hidden");
+    return;
+  }
+
+  for (const message of terminalMessages) {
+    const line = document.createElement("p");
+    line.className = "intro-line";
+    introLines.appendChild(line);
+    await typeText(line, message, 24);
+    await wait(160);
+  }
+
+  await wait(280);
+  introOverlay.classList.add("is-hidden");
+}
+
 function updateScrollProgress() {
   if (!progressBar) return;
 
@@ -92,3 +127,4 @@ window.addEventListener("load", updateScrollProgress);
 
 initReveal();
 startRoleTyping();
+playIntro();

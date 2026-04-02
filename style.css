@@ -132,6 +132,46 @@ img {
   background: linear-gradient(90deg, var(--accent), var(--accent-strong));
 }
 
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(13, 17, 23, 0.92);
+  backdrop-filter: blur(6px);
+  transition:
+    opacity 320ms ease,
+    visibility 320ms ease;
+}
+
+.intro-overlay.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.intro-terminal {
+  width: min(100%, 40rem);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel), var(--panel-alt));
+}
+
+.intro-terminal__body {
+  display: grid;
+  gap: 0.55rem;
+  min-height: 12rem;
+  padding: 1.35rem;
+}
+
+.intro-line {
+  min-height: 1.45rem;
+  margin: 0;
+  color: var(--accent-strong);
+}
+
 .site-header {
   position: sticky;
   top: 0;
