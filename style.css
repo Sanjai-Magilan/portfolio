@@ -389,6 +389,7 @@ button {
   padding: 0.85rem 1.25rem;
   border-radius: 999px;
   border: 1px solid transparent;
+  cursor: pointer;
   transition:
     transform var(--transition),
     border-color var(--transition),
@@ -706,60 +707,88 @@ button {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.contact-card {
+.contact-simple {
+  max-width: 40rem;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 2rem;
-  padding: 1.5rem;
-  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
 }
 
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-  justify-content: flex-end;
+.contact-simple h2 {
+  margin: 0;
 }
 
-.contact-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-height: 3rem;
-  padding: 0.8rem 1.05rem;
-  border-radius: 999px;
+.contact-simple__copy {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 1.02rem;
+}
+
+.contact-terminal {
+  width: min(100%, 34rem);
+  margin: 0 auto;
+  padding: 1.4rem 1.5rem;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text);
-  transition:
-    transform var(--transition),
-    border-color var(--transition),
-    background-color var(--transition),
-    box-shadow var(--transition);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  text-align: left;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
-.contact-links a:hover {
-  transform: translateY(-2px);
-  border-color: rgba(48, 227, 202, 0.35);
-  background: rgba(48, 227, 202, 0.08);
-  box-shadow: 0 16px 30px rgba(9, 17, 31, 0.22);
+.contact-terminal__line {
+  margin: 0;
+  min-height: 1.55rem;
 }
 
-.contact-links a span {
+.contact-terminal__line + .contact-terminal__line {
+  margin-top: 0.45rem;
+}
+
+.contact-terminal__prompt {
+  color: var(--accent);
+}
+
+.contact-link-line {
+  display: block;
+  width: 100%;
+  margin-top: 0.45rem;
+  padding: 0.12rem 0;
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(100, 255, 218, 0.4);
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-link-line:hover {
+  color: #9fffe9;
+  text-decoration-color: rgba(100, 255, 218, 0.8);
+  text-shadow: 0 0 5px rgba(0, 255, 200, 0.5);
+}
+
+.contact-terminal__hint {
+  margin: 0.75rem 0 0;
+  color: var(--text-soft);
+  opacity: 0.58;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.contact-terminal__cursor-line {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.2rem;
 }
 
-.contact-links svg {
-  width: 1.125rem;
-  height: 1.125rem;
-  flex-shrink: 0;
-  transition: transform var(--transition);
-}
-
-.contact-links a:hover svg {
-  transform: scale(1.06);
+.terminal-cursor {
+  display: inline-block;
+  width: 0.62rem;
+  height: 1.05rem;
+  background: var(--accent);
+  animation: blink 1s steps(1, end) infinite;
 }
 
 .footer {
@@ -821,13 +850,8 @@ button {
   .impact-grid,
   .skills-grid,
   .projects-grid,
-  .cert-grid,
-  .contact-card {
+  .cert-grid {
     grid-template-columns: 1fr;
-  }
-
-  .contact-links {
-    justify-content: flex-start;
   }
 }
 
@@ -860,14 +884,12 @@ button {
   }
 
   .hero__actions,
-  .hero__highlights,
-  .contact-links {
+  .hero__highlights {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .button,
-  .contact-links a {
+  .button {
     width: 100%;
   }
 
