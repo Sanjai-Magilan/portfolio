@@ -17,7 +17,9 @@ const terminalMessages = [
   "> status: ready",
 ];
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
 
 function wait(duration) {
   return new Promise((resolve) => {
@@ -116,15 +118,84 @@ function initReveal() {
     {
       threshold: 0.16,
       rootMargin: "0px 0px -40px 0px",
-    }
+    },
   );
 
   revealElements.forEach((element) => observer.observe(element));
+}
+
+function initSmoothScroll() {
+  const inPageLinks = document.querySelectorAll('a[href^="#"]');
+
+  inPageLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const target = document.querySelector(href);
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({
+        behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  });
+}
+
+function initMobileMenu() {
+  const nav = document.querySelector(".nav");
+  const navLinks = document.querySelector(".nav__links");
+  if (!nav || !navLinks) return;
+
+  let toggle = nav.querySelector(".menu-toggle");
+  let menu = nav.querySelector(".mobile-menu");
+
+  if (!toggle) {
+    toggle = document.createElement("button");
+    toggle.className = "menu-toggle";
+    toggle.type = "button";
+    toggle.setAttribute("aria-label", "Toggle navigation menu");
+    toggle.textContent = "☰";
+    nav.appendChild(toggle);
+  }
+
+  if (!menu) {
+    menu = document.createElement("div");
+    menu.className = "mobile-menu";
+    menu.innerHTML = navLinks.innerHTML;
+    nav.appendChild(menu);
+  }
+
+  toggle.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+
+  menu.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      menu.style.display = "none";
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!nav.contains(event.target)) {
+      menu.style.display = "none";
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      menu.style.display = "none";
+    }
+  });
 }
 
 window.addEventListener("scroll", updateScrollProgress, { passive: true });
 window.addEventListener("load", updateScrollProgress);
 
 initReveal();
+initSmoothScroll();
+initMobileMenu();
 startRoleTyping();
 playIntro();

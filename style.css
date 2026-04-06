@@ -181,12 +181,14 @@ img {
   backdrop-filter: blur(8px);
 }
 
+.navbar,
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   min-height: 4.5rem;
+  position: relative;
 }
 
 .brand {
@@ -235,9 +237,12 @@ img {
 .hero-terminal,
 .terminal-panel,
 .project-card {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: linear-gradient(180deg, var(--panel), var(--panel-alt));
+  border: 1px solid #44475a;
+  border-radius: 16px;
+  background: #21222c;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .hero-terminal {
@@ -249,8 +254,13 @@ img {
   gap: 0.45rem;
   align-items: center;
   padding: 0.9rem 1.1rem;
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid #44475a;
+  background: #1e1f29;
+}
+
+.terminal-header {
+  border-bottom: 1px solid #44475a;
+  background: #1e1f29;
 }
 
 .terminal-bar span {
@@ -337,6 +347,12 @@ img {
 .project-metrics li {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.02);
+  transition:
+    transform var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    background-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .hero-highlights li {
@@ -441,11 +457,87 @@ img {
   color: var(--accent);
   border-color: var(--line-strong);
   background: rgba(121, 192, 255, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+}
+
+.hero-highlights li:hover,
+.project-badges li:hover,
+.project-metrics li:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  background: rgba(121, 192, 255, 0.06);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.terminal-panel,
+.project-card,
+.hero-terminal {
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.terminal-panel:hover,
+.project-card:hover,
+.hero-terminal:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .project-card {
   overflow: hidden;
   display: grid;
+}
+
+.terminal,
+.card {
+  border-radius: 16px;
+  border: 1px solid #44475a;
+  background: #21222c;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.terminal {
+  overflow: hidden;
+}
+
+.menu-toggle {
+  display: none;
+  border: 1px solid #44475a;
+  border-radius: 10px;
+  background: #21222c;
+  color: #f8f8f2;
+  padding: 0.45rem 0.6rem;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 60px;
+  right: 16px;
+  background: #21222c;
+  border: 1px solid #44475a;
+  border-radius: 12px;
+  padding: 12px;
+  display: none;
+  z-index: 45;
+  min-width: 200px;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 8px 12px;
+  color: #f8f8f2;
+}
+
+.mobile-menu a:hover {
+  color: #50fa7b;
 }
 
 .project-card__body {
@@ -603,5 +695,26 @@ img {
 
   .contact-block a {
     width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar,
+  .nav {
+    padding: 10px 16px;
+    border-radius: 12px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-links,
+  .nav__links {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    color: #f8f8f2;
   }
 }
