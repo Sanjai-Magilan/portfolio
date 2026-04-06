@@ -1,7 +1,7 @@
 const introOverlay = document.getElementById("intro-overlay");
 const introLines = document.getElementById("intro-lines");
 const typingText = document.getElementById("typing-text");
-const themeToggle = document.getElementById("theme-toggle");
+const toggle = document.querySelector(".theme-toggle");
 const progressBar = document.getElementById("scroll-progress-bar");
 const revealElements = document.querySelectorAll(".reveal");
 
@@ -18,7 +18,9 @@ const terminalMessages = [
   "> welcome to my portfolio!",
 ];
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
 
 // Persist the user's preferred theme between visits.
 function setTheme(theme) {
@@ -109,8 +111,10 @@ function startRoleTyping() {
 }
 
 function updateScrollProgress() {
-  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+  const scrollableHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+  const progress =
+    scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
   progressBar.style.width = `${progress}%`;
 }
 
@@ -133,15 +137,20 @@ function initReveal() {
     {
       threshold: 0.18,
       rootMargin: "0px 0px -30px 0px",
-    }
+    },
   );
 
   revealElements.forEach((element) => observer.observe(element));
 }
 
-themeToggle?.addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  setTheme(currentTheme === "light" ? "dark" : "light");
+toggle?.addEventListener("click", () => {
+  const current = document.documentElement.getAttribute("data-theme");
+
+  if (current === "dark") {
+    setTheme("light");
+  } else {
+    setTheme("dark");
+  }
 });
 
 window.addEventListener("scroll", updateScrollProgress, { passive: true });
