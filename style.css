@@ -294,12 +294,19 @@ button:hover,
   border-radius: 999px;
   background: var(--bg-soft);
   backdrop-filter: none;
+  position: relative;
 }
 
 .navbar,
 .nav {
   background: var(--bg-secondary);
   border-color: var(--border);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .brand {
@@ -905,15 +912,73 @@ svg {
   fill: none;
 }
 
-.card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-}
-
 .terminal {
   background: var(--bg-secondary);
   color: var(--text);
   border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+}
+
+.card {
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.terminal-card,
+.intro-terminal,
+.contact-terminal {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.terminal-header,
+.terminal-card__bar,
+.intro-terminal__header {
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-secondary) 88%, #000 12%);
+}
+
+.menu-toggle {
+  display: none;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.45rem 0.6rem;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 60px;
+  right: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  display: none;
+  z-index: 45;
+  min-width: 180px;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--text);
+}
+
+.mobile-menu a:hover {
+  color: var(--accent);
 }
 
 .prompt {
@@ -1050,5 +1115,30 @@ svg {
   .project-card__title-row {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar,
+  .nav {
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 12px;
+  }
+
+  .nav-links,
+  .nav__links {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    color: var(--text);
+  }
+
+  .theme-toggle {
+    width: auto;
   }
 }

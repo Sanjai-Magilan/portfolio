@@ -1,7 +1,7 @@
 const introOverlay = document.getElementById("intro-overlay");
 const introLines = document.getElementById("intro-lines");
 const typingText = document.getElementById("typing-text");
-const toggle = document.querySelector(".theme-toggle");
+const themeToggle = document.querySelector(".theme-toggle");
 const progressBar = document.getElementById("scroll-progress-bar");
 const revealElements = document.querySelectorAll(".reveal");
 
@@ -143,7 +143,55 @@ function initReveal() {
   revealElements.forEach((element) => observer.observe(element));
 }
 
-toggle?.addEventListener("click", () => {
+function initMobileMenu() {
+  const nav = document.querySelector(".nav");
+  const navLinks = document.querySelector(".nav__links");
+  if (!nav || !navLinks) return;
+
+  let menuToggle = nav.querySelector(".menu-toggle");
+  let menu = nav.querySelector(".mobile-menu");
+
+  if (!menuToggle) {
+    menuToggle = document.createElement("button");
+    menuToggle.className = "menu-toggle";
+    menuToggle.type = "button";
+    menuToggle.setAttribute("aria-label", "Toggle navigation menu");
+    menuToggle.textContent = "☰";
+    nav.appendChild(menuToggle);
+  }
+
+  if (!menu) {
+    menu = document.createElement("div");
+    menu.className = "mobile-menu";
+    menu.setAttribute("aria-label", "Mobile navigation");
+    menu.innerHTML = navLinks.innerHTML;
+    nav.appendChild(menu);
+  }
+
+  menuToggle.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+
+  menu.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      menu.style.display = "none";
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!nav.contains(event.target)) {
+      menu.style.display = "none";
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      menu.style.display = "none";
+    }
+  });
+}
+
+themeToggle?.addEventListener("click", () => {
   const current = document.documentElement.getAttribute("data-theme");
 
   if (current === "dark") {
@@ -158,5 +206,6 @@ window.addEventListener("load", updateScrollProgress);
 
 initTheme();
 initReveal();
+initMobileMenu();
 startRoleTyping();
 playIntro();
