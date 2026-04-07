@@ -607,23 +607,74 @@ img {
 
 .terminal-panel--contact {
   display: grid;
-  gap: 1.25rem;
+  gap: 0.65rem;
   width: min(100%, 47rem);
+  padding: 1rem 1.1rem;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  box-shadow: none;
+  font-family: var(--font-mono);
 }
 
 .contact-block {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.2rem;
 }
 
 .contact-block a {
+  display: block;
   width: fit-content;
+  margin-left: 1.15rem;
+  color: #50fa7b;
+  text-decoration: none;
 }
 
 .contact-inline-links {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.2rem;
   justify-items: start;
+  margin-left: 1.15rem;
+}
+
+.contact-command {
+  margin: 0;
+  color: #e6edf3;
+  line-height: 1.35;
+}
+
+.contact-prompt {
+  color: #8be9fd;
+  font-weight: 600;
+}
+
+.contact-flag {
+  color: #79c0ff;
+}
+
+.contact-hint {
+  margin: 0.1rem 0 0;
+  color: #6272a4;
+}
+
+.contact-cursor-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.terminal-panel--contact .terminal-cursor {
+  display: inline-block;
+  width: 0.6ch;
+  height: 1em;
+  background: #50fa7b;
+  animation: blink 900ms steps(1) infinite;
+}
+
+.contact-block a:hover {
+  color: #50fa7b;
+  text-decoration: underline;
+  text-shadow: none;
 }
 
 .footer {
