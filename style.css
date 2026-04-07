@@ -620,10 +620,9 @@ img {
 }
 
 .contact-inline-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
+  display: grid;
+  gap: 0.35rem;
+  justify-items: start;
 }
 
 .footer {
