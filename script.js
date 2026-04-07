@@ -124,6 +124,39 @@ function initReveal() {
   revealElements.forEach((element) => observer.observe(element));
 }
 
+function smoothScrollTo(targetY, duration = 700) {
+  const maxY = document.documentElement.scrollHeight - window.innerHeight;
+  const destination = Math.max(0, Math.min(targetY, maxY));
+
+  if (prefersReducedMotion.matches) {
+    window.scrollTo(0, destination);
+    return;
+  }
+
+  const startY = window.scrollY;
+  const diff = destination - startY;
+  let start;
+
+  function easeInOut(t) {
+    return t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+  }
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+
+    const progress = (timestamp - start) / duration;
+    const eased = easeInOut(Math.min(progress, 1));
+
+    window.scrollTo(0, startY + diff * eased);
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
 function initSmoothScroll() {
   const inPageLinks = document.querySelectorAll('a[href^="#"]');
 
@@ -136,10 +169,11 @@ function initSmoothScroll() {
       if (!target) return;
 
       event.preventDefault();
-      target.scrollIntoView({
-        behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-        block: "start",
-      });
+
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+      smoothScrollTo(top);
     });
   });
 }
