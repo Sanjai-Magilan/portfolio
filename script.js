@@ -118,6 +118,58 @@ function updateScrollProgress() {
   progressBar.style.width = `${progress}%`;
 }
 
+function smoothScrollTo(targetY, duration = 700) {
+  const startY = window.scrollY;
+  const maxY =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+  const clampedTargetY = Math.max(0, Math.min(targetY, maxY));
+  const diff = clampedTargetY - startY;
+  let start;
+
+  function easeInOut(t) {
+    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  }
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const eased = easeInOut(progress);
+
+    window.scrollTo(0, startY + diff * eased);
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+function initSmoothAnchorScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function handleAnchorClick(event) {
+      const selector = this.getAttribute("href");
+      if (!selector || selector === "#") return;
+
+      const target = document.querySelector(selector);
+      if (!target) return;
+
+      event.preventDefault();
+
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+      if (prefersReducedMotion.matches) {
+        window.scrollTo(0, top);
+        return;
+      }
+
+      smoothScrollTo(top);
+    });
+  });
+}
+
 function initReveal() {
   if (prefersReducedMotion.matches) {
     revealElements.forEach((element) => element.classList.add("is-visible"));
@@ -207,5 +259,6 @@ window.addEventListener("load", updateScrollProgress);
 initTheme();
 initReveal();
 initMobileMenu();
+initSmoothAnchorScroll();
 startRoleTyping();
 playIntro();
