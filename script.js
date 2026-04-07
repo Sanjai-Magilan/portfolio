@@ -1,7 +1,7 @@
 const introOverlay = document.getElementById("intro-overlay");
 const introLines = document.getElementById("intro-lines");
 const typingText = document.getElementById("typing-text");
-const themeToggle = document.getElementById("theme-toggle");
+const themeToggle = document.querySelector(".theme-toggle");
 const progressBar = document.getElementById("scroll-progress-bar");
 const revealElements = document.querySelectorAll(".reveal");
 
@@ -18,7 +18,9 @@ const terminalMessages = [
   "> welcome to my portfolio!",
 ];
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
 
 // Persist the user's preferred theme between visits.
 function setTheme(theme) {
@@ -109,9 +111,63 @@ function startRoleTyping() {
 }
 
 function updateScrollProgress() {
-  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+  const scrollableHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+  const progress =
+    scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
   progressBar.style.width = `${progress}%`;
+}
+
+function smoothScrollTo(targetY, duration = 700) {
+  const startY = window.scrollY;
+  const maxY =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+  const clampedTargetY = Math.max(0, Math.min(targetY, maxY));
+  const diff = clampedTargetY - startY;
+  let start;
+
+  function easeInOut(t) {
+    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  }
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const eased = easeInOut(progress);
+
+    window.scrollTo(0, startY + diff * eased);
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+function initSmoothAnchorScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function handleAnchorClick(event) {
+      const selector = this.getAttribute("href");
+      if (!selector || selector === "#") return;
+
+      const target = document.querySelector(selector);
+      if (!target) return;
+
+      event.preventDefault();
+
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+      if (prefersReducedMotion.matches) {
+        window.scrollTo(0, top);
+        return;
+      }
+
+      smoothScrollTo(top);
+    });
+  });
 }
 
 function initReveal() {
@@ -133,15 +189,68 @@ function initReveal() {
     {
       threshold: 0.18,
       rootMargin: "0px 0px -30px 0px",
-    }
+    },
   );
 
   revealElements.forEach((element) => observer.observe(element));
 }
 
+function initMobileMenu() {
+  const nav = document.querySelector(".nav");
+  const navLinks = document.querySelector(".nav__links");
+  if (!nav || !navLinks) return;
+
+  let menuToggle = nav.querySelector(".menu-toggle");
+  let menu = nav.querySelector(".mobile-menu");
+
+  if (!menuToggle) {
+    menuToggle = document.createElement("button");
+    menuToggle.className = "menu-toggle";
+    menuToggle.type = "button";
+    menuToggle.setAttribute("aria-label", "Toggle navigation menu");
+    menuToggle.textContent = "☰";
+    nav.appendChild(menuToggle);
+  }
+
+  if (!menu) {
+    menu = document.createElement("div");
+    menu.className = "mobile-menu";
+    menu.setAttribute("aria-label", "Mobile navigation");
+    menu.innerHTML = navLinks.innerHTML;
+    nav.appendChild(menu);
+  }
+
+  menuToggle.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+
+  menu.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      menu.style.display = "none";
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!nav.contains(event.target)) {
+      menu.style.display = "none";
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      menu.style.display = "none";
+    }
+  });
+}
+
 themeToggle?.addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  setTheme(currentTheme === "light" ? "dark" : "light");
+  const current = document.documentElement.getAttribute("data-theme");
+
+  if (current === "dark") {
+    setTheme("light");
+  } else {
+    setTheme("dark");
+  }
 });
 
 window.addEventListener("scroll", updateScrollProgress, { passive: true });
@@ -149,5 +258,7 @@ window.addEventListener("load", updateScrollProgress);
 
 initTheme();
 initReveal();
+initMobileMenu();
+initSmoothAnchorScroll();
 startRoleTyping();
 playIntro();
