@@ -24,8 +24,8 @@
   --surface-end: var(--bg-secondary);
   --overlay: rgba(245, 245, 245, 0.9);
   --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
-  --radius: 22px;
-  --radius-sm: 14px;
+  --radius: 16px;
+  --radius-sm: 16px;
   --container: min(1120px, calc(100% - 2rem));
   --transition: 220ms ease;
   --font-sans: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -83,7 +83,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  opacity: 0.06;
+  opacity: 0.015;
   pointer-events: none;
   background-image:
     linear-gradient(var(--line) 1px, transparent 1px),
@@ -192,8 +192,9 @@ button:hover,
   display: grid;
   place-items: center;
   padding: 1.5rem;
-  background: var(--overlay);
-  backdrop-filter: none;
+  background: rgba(33, 34, 44, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition:
     opacity 500ms ease,
     visibility 500ms ease;
@@ -204,8 +205,6 @@ button:hover,
   visibility: hidden;
 }
 
-.intro-terminal,
-.terminal-card,
 .content-card,
 .skill-group,
 .project-card,
@@ -220,8 +219,6 @@ button:hover,
 
 .intro-terminal {
   width: min(100%, 42rem);
-  border-radius: var(--radius);
-  overflow: hidden;
 }
 
 .intro-terminal__header,
@@ -230,8 +227,6 @@ button:hover,
   gap: 0.45rem;
   align-items: center;
   padding: 0.9rem 1.1rem;
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--line);
 }
 
 .intro-terminal__header span,
@@ -455,7 +450,7 @@ button:hover,
   align-items: center;
   justify-content: center;
   padding: 0.85rem 1.25rem;
-  border-radius: 999px;
+  border-radius: 16px;
   border: 1px solid var(--border);
   color: var(--text);
   background: transparent;
@@ -505,7 +500,7 @@ button:hover,
 
 .button--secondary {
   color: var(--text);
-  border-color: var(--border);
+  border: 1px solid var(--border);
   background: transparent;
 }
 
@@ -523,7 +518,7 @@ button:hover,
   color: var(--accent);
 }
 
-button a,
+.button a,
 .btn a {
   text-decoration: none !important;
 }
@@ -559,7 +554,6 @@ button a,
   gap: 1.15rem;
 }
 
-.terminal-card,
 .content-card,
 .skill-group,
 .timeline-card,
@@ -841,7 +835,7 @@ button a,
   margin: 0 auto;
   padding: 1.4rem 1.5rem;
   border: 1px solid var(--line);
-  border-radius: 1.25rem;
+  border-radius: 16px;
   background: var(--bg-secondary);
   text-align: left;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -912,41 +906,52 @@ svg {
   fill: none;
 }
 
-.terminal {
+
+.terminal,
+.intro-terminal,
+.terminal-card {
   background: var(--bg-secondary);
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 16px;
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
+.contact-terminal,
 .card {
   border-radius: 16px;
   border: 1px solid var(--border);
   background: var(--bg-secondary);
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
-.terminal-card,
-.intro-terminal,
 .contact-terminal {
-  border-radius: 16px;
   overflow: hidden;
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
+
+
 
 .terminal-header,
-.terminal-card__bar,
-.intro-terminal__header {
+.terminal-card__bar {
   border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg-secondary) 88%, #000 12%);
+  background: var(--bg-secondary);
+}
+
+.intro-terminal__header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.terminal-content,
+.terminal-screen,
+.terminal-card__content,
+.intro-terminal__body {
+  padding: 20px;
+}
+
+.intro-terminal__body {
+  background: var(--bg-secondary);
 }
 
 .menu-toggle {
@@ -983,10 +988,12 @@ svg {
 
 .prompt {
   color: var(--highlight);
+  opacity: 0.9;
 }
 
 .command {
   color: var(--primary);
+  opacity: 0.9;
 }
 
 .link {
@@ -995,6 +1002,27 @@ svg {
 
 .output {
   color: var(--text);
+  opacity: 0.9;
+}
+
+.terminal-prompt,
+.terminal-label,
+.terminal-row p,
+.terminal-row h1,
+.terminal-card__content p,
+.terminal-card__content strong,
+.intro-line,
+.contact-terminal__line,
+.contact-link-line {
+  opacity: 0.9;
+}
+
+.terminal-prompt {
+  color: var(--highlight);
+}
+
+.terminal-label {
+  color: var(--primary);
 }
 
 .highlight {
@@ -1082,21 +1110,6 @@ svg {
     padding-top: 0.5rem;
   }
 
-  .nav {
-    align-items: flex-start;
-    flex-direction: column;
-    border-radius: 1.1rem;
-  }
-
-  .nav__links {
-    gap: 0.85rem;
-  }
-
-  .theme-toggle {
-    width: 100%;
-    justify-content: center;
-  }
-
   .hero {
     padding-top: 3rem;
   }
@@ -1119,26 +1132,15 @@ svg {
 }
 
 @media (max-width: 768px) {
-  .navbar,
   .nav {
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 16px;
-    border-radius: 12px;
+    padding: 10px 14px;
   }
 
-  .nav-links,
   .nav__links {
     display: none;
   }
 
   .menu-toggle {
     display: block;
-    cursor: pointer;
-    color: var(--text);
-  }
-
-  .theme-toggle {
-    width: auto;
   }
 }
