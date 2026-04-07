@@ -1,17 +1,19 @@
 :root {
   color-scheme: dark;
   --bg: #0d1117;
+  --bg-secondary: #11161d;
   --bg-soft: #11161d;
   --panel: #161b22;
-  --panel-alt: #0f141b;
+  --panel-alt: #11161d;
   --text: #e6edf3;
-  --text-soft: #9da7b3;
-  --line: rgba(230, 237, 243, 0.12);
-  --line-strong: rgba(90, 162, 255, 0.28);
-  --accent: #7ee787;
+  --text-soft: #8b949e;
+  --line: #30363d;
+  --line-strong: rgba(63, 185, 80, 0.4);
+  --accent: #3fb950;
   --accent-strong: #79c0ff;
-  --accent-soft: rgba(126, 231, 135, 0.08);
-  --radius: 18px;
+  --accent-soft: rgba(63, 185, 80, 0.1);
+  --border: #30363d;
+  --radius: 16px;
   --radius-sm: 12px;
   --container: min(1080px, calc(100% - 2rem));
   --transition: 220ms ease;
@@ -26,7 +28,8 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
@@ -35,10 +38,7 @@ body {
   font-family: var(--font-mono);
   color: var(--text);
   line-height: 1.7;
-  background:
-    radial-gradient(circle at top right, rgba(121, 192, 255, 0.08), transparent 28%),
-    radial-gradient(circle at top left, rgba(126, 231, 135, 0.05), transparent 22%),
-    var(--bg);
+  background: var(--bg);
 }
 
 body::before {
@@ -47,17 +47,24 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 44px 44px;
-  opacity: 0.25;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent 92%);
+  background-image: none;
+  opacity: 0;
+  mask-image: none;
 }
 
 a {
-  color: inherit;
+  color: var(--accent);
   text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #56d364;
+  text-shadow: 0 0 4px rgba(63, 185, 80, 0.4);
+}
+
+p {
+  color: var(--text-soft);
 }
 
 button {
@@ -70,7 +77,7 @@ img {
 }
 
 ::selection {
-  background: rgba(121, 192, 255, 0.22);
+  background: rgba(63, 185, 80, 0.22);
 }
 
 .container {
@@ -97,14 +104,17 @@ img {
   margin: 0;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   line-height: 1.15;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+}
+
+.section-heading p {
+  max-width: 60ch;
 }
 
 .section-heading p:last-child:not(.section-command),
 .terminal-panel p:not(.terminal-prompt):not(.terminal-label),
 .project-card p:not(.project-line),
-.footer,
-.nav__links a {
+.footer {
   color: var(--text-soft);
 }
 
@@ -129,7 +139,7 @@ img {
   display: block;
   width: 0;
   height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  background: var(--accent);
 }
 
 .intro-overlay {
@@ -140,7 +150,7 @@ img {
   place-items: center;
   padding: 1.5rem;
   background: rgba(13, 17, 23, 0.92);
-  backdrop-filter: blur(6px);
+  backdrop-filter: none;
   transition:
     opacity 320ms ease,
     visibility 320ms ease;
@@ -154,9 +164,9 @@ img {
 .intro-terminal {
   width: min(100%, 40rem);
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: linear-gradient(180deg, var(--panel), var(--panel-alt));
+  background: var(--bg-secondary);
 }
 
 .intro-terminal__body {
@@ -176,9 +186,9 @@ img {
   position: sticky;
   top: 0;
   z-index: 40;
-  border-bottom: 1px solid var(--line);
-  background: rgba(13, 17, 23, 0.88);
-  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  background: rgba(13, 17, 23, 0.92);
+  backdrop-filter: none;
 }
 
 .navbar,
@@ -237,12 +247,10 @@ img {
 .hero-terminal,
 .terminal-panel,
 .project-card {
-  border: 1px solid #44475a;
+  border: 1px solid var(--border);
   border-radius: 16px;
-  background: #21222c;
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  background: var(--panel);
+  box-shadow: none;
 }
 
 .hero-terminal {
@@ -254,13 +262,13 @@ img {
   gap: 0.45rem;
   align-items: center;
   padding: 0.9rem 1.1rem;
-  border-bottom: 1px solid #44475a;
-  background: #1e1f29;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
 }
 
 .terminal-header {
-  border-bottom: 1px solid #44475a;
-  background: #1e1f29;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
 }
 
 .terminal-bar span {
@@ -289,6 +297,7 @@ img {
   display: grid;
   gap: 1.5rem;
   padding: 1.5rem;
+  line-height: 1.6;
 }
 
 .terminal-row {
@@ -346,7 +355,7 @@ img {
 .project-badges li,
 .project-metrics li {
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.02);
+  background: transparent;
   transition:
     transform var(--transition),
     color var(--transition),
@@ -373,16 +382,15 @@ img {
   justify-content: center;
   min-height: 3rem;
   padding: 0.8rem 1.15rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  transition:
-    color var(--transition),
-    border-color var(--transition),
-    background-color var(--transition);
+  transition: all 0.2s ease;
+  color: var(--text);
+  background: transparent;
 }
 
 .button--primary {
-  color: var(--bg);
+  color: #0d1117;
   border-color: var(--accent);
   background: var(--accent);
 }
@@ -393,14 +401,19 @@ img {
 }
 
 .button:hover {
-  border-color: var(--accent-strong);
-  color: var(--accent-strong);
-  background: rgba(121, 192, 255, 0.08);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: transparent;
+  text-shadow: none;
+}
+
+.button:active {
+  border-color: var(--accent);
 }
 
 .button--primary:hover {
-  color: var(--bg);
-  background: #98f5a2;
+  color: #0d1117;
+  background: #56d364;
 }
 
 .terminal-panel {
@@ -456,18 +469,18 @@ img {
 .skill-list li:hover {
   color: var(--accent);
   border-color: var(--line-strong);
-  background: rgba(121, 192, 255, 0.06);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+  background: var(--accent-soft);
+  box-shadow: none;
+  text-shadow: none;
 }
 
 .hero-highlights li:hover,
 .project-badges li:hover,
 .project-metrics li:hover {
-  transform: translateY(-2px);
   border-color: var(--line-strong);
-  background: rgba(121, 192, 255, 0.06);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  background: var(--accent-soft);
+  box-shadow: none;
+  text-shadow: none;
 }
 
 .terminal-panel,
@@ -482,11 +495,8 @@ img {
 .terminal-panel:hover,
 .project-card:hover,
 .hero-terminal:hover {
-  transform: translateY(-3px);
-  border-color: var(--line-strong);
-  box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  border-color: var(--accent);
+  box-shadow: none;
 }
 
 .project-card {
@@ -497,11 +507,13 @@ img {
 .terminal,
 .card {
   border-radius: 16px;
-  border: 1px solid #44475a;
-  background: #21222c;
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  background: var(--panel);
+  box-shadow: none;
+}
+
+.card:hover {
+  border-color: var(--accent);
 }
 
 .terminal {
@@ -510,10 +522,10 @@ img {
 
 .menu-toggle {
   display: none;
-  border: 1px solid #44475a;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #21222c;
-  color: #f8f8f2;
+  background: var(--bg-secondary);
+  color: var(--text);
   padding: 0.45rem 0.6rem;
 }
 
@@ -521,8 +533,8 @@ img {
   position: absolute;
   top: 60px;
   right: 16px;
-  background: #21222c;
-  border: 1px solid #44475a;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 12px;
   display: none;
@@ -533,11 +545,11 @@ img {
 .mobile-menu a {
   display: block;
   padding: 8px 12px;
-  color: #f8f8f2;
+  color: var(--text);
 }
 
 .mobile-menu a:hover {
-  color: #50fa7b;
+  color: var(--accent);
 }
 
 .project-card__body {
@@ -575,6 +587,22 @@ img {
 
 .project-link {
   color: var(--accent-strong);
+}
+
+.prompt {
+  color: var(--accent);
+}
+
+.command {
+  color: #79c0ff;
+}
+
+.output {
+  color: var(--text);
+}
+
+.terminal-cursor {
+  background: var(--accent);
 }
 
 .terminal-panel--contact {
@@ -715,6 +743,6 @@ img {
   .menu-toggle {
     display: block;
     cursor: pointer;
-    color: #f8f8f2;
+    color: var(--text);
   }
 }
