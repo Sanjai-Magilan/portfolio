@@ -842,6 +842,11 @@ button:hover,
   font-size: 1.02rem;
 }
 
+.contact-simple__actions {
+  display: flex;
+  justify-content: center;
+}
+
 .contact-terminal {
   width: min(100%, 34rem);
   margin: 0 auto;
