@@ -262,3 +262,83 @@ initMobileMenu();
 initSmoothAnchorScroll();
 startRoleTyping();
 playIntro();
+
+// CONSOLE EASTER EGG 
+(function consoleEasterEgg() {
+  const green = "color:#3fb950; font-family:monospace;";
+  const white = "color:#e6edf3; font-family:monospace;";
+  const blue = "color:#79c0ff; font-family:monospace;";
+  const gray = "color:#8b949e; font-family:monospace;";
+
+  // ASCII banner (clean, not cringe)
+  console.log(
+    `%c
+  ███████╗ █████╗ ███╗   ██╗     ██╗ █████╗ ██╗
+  ██╔════╝██╔══██╗████╗  ██║     ██║██╔══██╗██║
+  ███████╗███████║██╔██╗ ██║     ██║███████║██║
+  ╚════██║██╔══██║██║╚██╗██║██   ██║██╔══██║██║
+  ███████║██║  ██║██║ ╚████║╚█████╔╝██║  ██║██║
+  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚════╝ ╚═╝  ╚═╝╚═╝
+
+  ███╗   ███╗ █████╗  ██████╗ ██╗██╗      █████╗ ███╗   ██╗
+  ████╗ ████║██╔══██╗██╔════╝ ██║██║     ██╔══██╗████╗  ██║
+  ██╔████╔██║███████║██║  ███╗██║██║     ███████║██╔██╗ ██║
+  ██║╚██╔╝██║██╔══██║██║   ██║██║██║     ██╔══██║██║╚██╗██║
+  ██║ ╚═╝ ██║██║  ██║╚██████╔╝██║███████╗██║  ██║██║ ╚████║
+  ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝
+`,
+    green,
+  );
+
+  console.log("%c> Oh ! you found the hidden terminal.", green);
+  console.log("%c> Only Pros like you can access this.", green);
+
+  // console.log("%cHey Buddy.", white);
+  console.log("%cYou found the hidden terminal.", gray);
+
+  console.log("%cType help() to begin.", blue);
+
+  // ===============================
+  // 🧠 COMMAND SYSTEM
+  // ===============================
+
+  window.help = () => {
+    console.log("%cAvailable commands:", green);
+    console.log("%cabout()     → who am I", white);
+    console.log("%cprojects()  → view my work", white);
+    console.log("%ccontact()   → reach me", white);
+    console.log("%ceaster()    → secret 👀", white);
+  };
+
+  window.about = () => {
+    console.log("%c> whoami", green);
+    console.log("%cSanjai Magilan", white);
+    console.log("%cWeb Dev + DevOps focused on scalable systems.", gray);
+  };
+
+  window.projects = () => {
+    console.log("%c> opening projects...", green);
+    document.querySelector("#projects")?.scrollIntoView({
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    });
+  };
+
+  window.contact = () => {
+    console.log("%c> initiating contact...", green);
+    document.querySelector("#contact")?.scrollIntoView({
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    });
+  };
+
+  // SECRET COMMAND
+
+  window.easter = () => {
+    console.log("%c> unlocking hidden mode...", green);
+
+    setTimeout(() => {
+      console.log("%cSystem message:", gray);
+      console.log("%cIf you're reading this...", white);
+      console.log("%cyou're exactly the kind of engineer I like 😄", green);
+    }, 600);
+  };
+})();
