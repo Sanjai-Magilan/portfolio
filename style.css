@@ -777,6 +777,7 @@ button:hover,
 
 .projects-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
 }
 
 .project-card {
@@ -825,30 +826,32 @@ button:hover,
 }
 
 .project-card__body {
-  padding: 1.45rem 1.45rem 1.55rem;
+  padding: 1.6rem 1.6rem 1.7rem;
   display: grid;
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
 .project-card__top {
   display: grid;
-  gap: 0.8rem;
+  gap: 0.9rem;
 }
 
 .project-card__title-block {
   display: grid;
-  gap: 0.7rem;
+  gap: 0.75rem;
 }
 
 .project-card__title-row {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  align-items: start;
+  align-items: center;
 }
 
 .project-card__title-row h3 {
   margin: 0;
+  font-size: 1.22rem;
+  font-weight: 650;
 }
 
 .project-card__title-row h3,
@@ -858,6 +861,7 @@ button:hover,
 
 .project-card__top a {
   font-weight: 600;
+  font-size: 0.94rem;
 }
 
 .project-badges {
@@ -878,9 +882,9 @@ button:hover,
   color: var(--text);
   backdrop-filter: none;
   box-shadow:
-    0 6px 14px color-mix(in srgb, #0f172a 10%, transparent),
-    inset 0 1px 0 color-mix(in srgb, white 82%, transparent);
-  font-size: 0.78rem;
+    0 5px 12px color-mix(in srgb, #0f172a 8%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 84%, transparent);
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1;
@@ -912,8 +916,8 @@ button:hover,
 .project-card:hover .project-badge {
   transform: translateY(-1px);
   box-shadow:
-    0 8px 18px color-mix(in srgb, #0f172a 12%, transparent),
-    inset 0 1px 0 color-mix(in srgb, white 86%, transparent);
+    0 7px 16px color-mix(in srgb, #0f172a 10%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 88%, transparent);
 }
 
 .project-card:hover .project-badge--winner {
@@ -955,11 +959,18 @@ button:hover,
 }
 
 .project-metrics li {
-  padding: 0.5rem 0.78rem;
+  padding: 0.54rem 0.82rem;
   color: var(--text-soft);
-  font-size: 0.9rem;
-  background: color-mix(in srgb, var(--bg-secondary) 92%, var(--accent) 8%);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, white 80%, transparent);
+  font-size: 0.88rem;
+  background: color-mix(in srgb, var(--bg-secondary) 94%, var(--accent) 6%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 84%, transparent),
+    0 8px 18px color-mix(in srgb, #0f172a 6%, transparent);
+}
+
+.project-card p {
+  margin: 0;
+  line-height: 1.72;
 }
 
 .stack {
