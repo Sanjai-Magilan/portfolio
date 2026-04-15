@@ -2,8 +2,12 @@ const introOverlay = document.getElementById("intro-overlay");
 const introLines = document.getElementById("intro-lines");
 const typingText = document.getElementById("typing-text");
 const themeToggle = document.querySelector(".theme-toggle");
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 const progressBar = document.getElementById("scroll-progress-bar");
 const revealElements = document.querySelectorAll(".reveal");
+const tiltCards = document.querySelectorAll(
+  ".content-card, .skill-group, .project-card, .timeline-card, .impact-card, .contact-card, .terminal, .intro-terminal, .terminal-card, .contact-terminal, .card",
+);
 
 const roles = [
   "Web Developer",
@@ -26,6 +30,13 @@ const prefersReducedMotion = window.matchMedia(
 function setTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme-preference", theme);
+
+  if (themeColorMeta) {
+    themeColorMeta.setAttribute(
+      "content",
+      theme === "dark" ? "#090c13" : "#f6f8fc",
+    );
+  }
 }
 
 function initTheme() {
@@ -195,6 +206,89 @@ function initReveal() {
   revealElements.forEach((element) => observer.observe(element));
 }
 
+function initCardTilt() {
+  if (prefersReducedMotion.matches) return;
+
+  const supportsHover = window.matchMedia(
+    "(hover: hover) and (pointer: fine)",
+  ).matches;
+
+  if (!supportsHover) return;
+
+  tiltCards.forEach((card) => {
+    let frameId = null;
+    let targetTiltX = 0;
+    let targetTiltY = 0;
+    let currentTiltX = 0;
+    let currentTiltY = 0;
+    let targetGlowX = 50;
+    let targetGlowY = 24;
+    let currentGlowX = 50;
+    let currentGlowY = 24;
+    let isActive = false;
+
+    const render = () => {
+      currentTiltX += (targetTiltX - currentTiltX) * 0.12;
+      currentTiltY += (targetTiltY - currentTiltY) * 0.12;
+      currentGlowX += (targetGlowX - currentGlowX) * 0.14;
+      currentGlowY += (targetGlowY - currentGlowY) * 0.14;
+
+      card.style.setProperty("--tilt-x", `${currentTiltX.toFixed(2)}deg`);
+      card.style.setProperty("--tilt-y", `${currentTiltY.toFixed(2)}deg`);
+      card.style.setProperty("--glow-x", `${currentGlowX.toFixed(2)}%`);
+      card.style.setProperty("--glow-y", `${currentGlowY.toFixed(2)}%`);
+
+      const settledTilt =
+        Math.abs(targetTiltX - currentTiltX) < 0.01 &&
+        Math.abs(targetTiltY - currentTiltY) < 0.01;
+      const settledGlow =
+        Math.abs(targetGlowX - currentGlowX) < 0.05 &&
+        Math.abs(targetGlowY - currentGlowY) < 0.05;
+
+      if (isActive || !settledTilt || !settledGlow) {
+        frameId = window.requestAnimationFrame(render);
+      } else {
+        frameId = null;
+      }
+    };
+
+    const startRender = () => {
+      if (frameId === null) {
+        frameId = window.requestAnimationFrame(render);
+      }
+    };
+
+    const resetCard = () => {
+      isActive = false;
+      targetTiltX = 0;
+      targetTiltY = 0;
+      targetGlowX = 50;
+      targetGlowY = 24;
+      startRender();
+    };
+
+    card.addEventListener("pointerenter", () => {
+      isActive = true;
+      startRender();
+    });
+
+    card.addEventListener("pointermove", (event) => {
+      const bounds = card.getBoundingClientRect();
+      const pointerX = (event.clientX - bounds.left) / bounds.width;
+      const pointerY = (event.clientY - bounds.top) / bounds.height;
+
+      targetTiltY = (pointerX - 0.5) * 8;
+      targetTiltX = (0.5 - pointerY) * 7;
+      targetGlowX = pointerX * 100;
+      targetGlowY = pointerY * 100;
+      startRender();
+    });
+
+    card.addEventListener("pointerleave", resetCard);
+    card.addEventListener("pointercancel", resetCard);
+  });
+}
+
 function initMobileMenu() {
   const nav = document.querySelector(".nav");
   const navLinks = document.querySelector(".nav__links");
@@ -258,12 +352,13 @@ window.addEventListener("load", updateScrollProgress);
 
 initTheme();
 initReveal();
+initCardTilt();
 initMobileMenu();
 initSmoothAnchorScroll();
 startRoleTyping();
 playIntro();
 
-// CONSOLE EASTER EGG 
+// CONSOLE EASTER EGG
 (function consoleEasterEgg() {
   const green = "color:#3fb950; font-family:monospace;";
   const white = "color:#e6edf3; font-family:monospace;";
