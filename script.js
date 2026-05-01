@@ -432,8 +432,8 @@ playIntro();
 
     setTimeout(() => {
       console.log("%cSystem message:", gray);
-      console.log("%cIf you're reading this...", white);
-      console.log("%cyou're exactly the kind of engineer I like 😄", green);
+      console.log("%ctype 'gun' in the contact terminal", green);
+      console.log("%cyou did it!", white);
     }, 600);
   };
 })();
