@@ -458,6 +458,20 @@ playIntro();
     cursorLine.insertBefore(inputSpan, cursorEl);
   }
 
+  // Make the input span focusable so clicks place the caret there.
+  inputSpan.setAttribute("tabindex", "0");
+  inputSpan.setAttribute("contenteditable", "true");
+  inputSpan.style.whiteSpace = "pre";
+  inputSpan.style.caretColor = "transparent"; // hide native caret, we show custom block
+
+  inputSpan.addEventListener("focus", () => {
+    focused = true;
+  });
+
+  inputSpan.addEventListener("blur", () => {
+    focused = false;
+  });
+
   let buffer = "";
   let focused = false;
 
