@@ -798,6 +798,62 @@ button:hover,
   box-shadow: var(--card-shadow-hover);
 }
 
+/* Game modal */
+.game-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 120;
+  align-items: center;
+  justify-content: center;
+}
+.game-modal.is-open {
+  display: flex;
+}
+.game-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(6px);
+}
+.game-modal__content {
+  position: relative;
+  width: min(800px, 76%);
+  height: min(680px, 82%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(2, 6, 23, 0.6);
+  background: var(--bg-secondary);
+  z-index: 1;
+  border: 1px solid var(--line);
+}
+.game-modal__content iframe {
+  width: 100%;
+  height: calc(100% + 28px);
+  margin-top: -28px;
+  border: none;
+  display: block;
+}
+
+/* Contact terminal input */
+.contact-terminal { cursor: text; }
+.contact-terminal__input {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  color: var(--text);
+  display: inline-block;
+  min-width: 1ch;
+}
+.terminal-cursor {
+  width: 0.6ch;
+  display: inline-block;
+  background: var(--accent);
+  margin-left: 6px;
+  animation: blink-caret 900ms steps(1) infinite;
+  vertical-align: middle;
+  height: 1.05em;
+}
+@keyframes blink-caret { 50% { opacity: 0; } }
+
 .card:hover {
   transform: translateY(-4px);
 }

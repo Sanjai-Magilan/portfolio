@@ -437,3 +437,130 @@ playIntro();
     }, 600);
   };
 })();
+
+/* Contact terminal input + game modal (secret word: "gun") */
+(function setupContactTerminalGame() {
+  const CONTACT_GAME_URL = "https://sanjai-magilan.github.io/";
+
+  const contactTerminal = document.querySelector(".contact-terminal");
+  if (!contactTerminal) return;
+
+  const cursorLine = contactTerminal.querySelector(
+    ".contact-terminal__cursor-line",
+  );
+  if (!cursorLine) return;
+
+  let inputSpan = cursorLine.querySelector(".contact-terminal__input");
+  if (!inputSpan) {
+    inputSpan = document.createElement("span");
+    inputSpan.className = "contact-terminal__input";
+    const cursorEl = cursorLine.querySelector(".terminal-cursor");
+    cursorLine.insertBefore(inputSpan, cursorEl);
+  }
+
+  let buffer = "";
+  let focused = false;
+
+  // Create modal elements
+  const modal = document.createElement("div");
+  modal.className = "game-modal";
+  modal.setAttribute("aria-hidden", "true");
+  modal.innerHTML = `
+    <div class="game-modal__backdrop"></div>
+    <div class="game-modal__content">
+      <iframe id="game-iframe" src="" allow="autoplay; fullscreen"></iframe>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const iframe = modal.querySelector("#game-iframe");
+  const content = modal.querySelector(".game-modal__content");
+  const backdrop = modal.querySelector(".game-modal__backdrop");
+
+  function openGameModal() {
+    iframe.src = CONTACT_GAME_URL;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    appendContactLine(`> secret unlocked enjoy the game!`);
+  }
+
+  function closeGameModal() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    // stop audio/game by clearing src
+    iframe.src = "";
+  }
+
+  backdrop.addEventListener("click", closeGameModal);
+  modal.addEventListener("click", (e) => {
+    if (content && !content.contains(e.target)) {
+      closeGameModal();
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+      closeGameModal();
+    }
+  });
+
+  contactTerminal.addEventListener("click", () => {
+    focused = true;
+    // place caret at end visually
+    inputSpan.focus?.();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!contactTerminal.contains(e.target)) focused = false;
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!focused) return;
+
+    if (e.key === "Backspace") {
+      buffer = buffer.slice(0, -1);
+      inputSpan.textContent = buffer;
+      e.preventDefault();
+      return;
+    }
+
+    if (e.key === "Enter") {
+      const cmd = buffer.trim().toLowerCase();
+      handleCommand(cmd);
+      buffer = "";
+      inputSpan.textContent = "";
+      e.preventDefault();
+      return;
+    }
+
+    if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
+      buffer += e.key;
+      inputSpan.textContent = buffer;
+      e.preventDefault();
+    }
+  });
+
+  function handleCommand(cmd) {
+    if (!cmd) return;
+    if (cmd === "gun") {
+      openGameModal();
+      return;
+    }
+    if (cmd === "help") {
+      appendContactLine(
+        "> help: try entering the secret word or use the visible links",
+      );
+      return;
+    }
+    appendContactLine(`> Unknown command: ${cmd}`);
+  }
+
+  function appendContactLine(text) {
+    const p = document.createElement("p");
+    p.className = "contact-terminal__line";
+    p.textContent = text;
+    // insert before cursor line so cursor stays at bottom
+    contactTerminal.insertBefore(p, cursorLine);
+    // keep the terminal scrolled to bottom
+    contactTerminal.scrollTop = contactTerminal.scrollHeight;
+  }
+})();
