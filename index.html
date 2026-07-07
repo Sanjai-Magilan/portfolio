@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sanjai Magilan </title>
+    <title>Sanjai Magilan — Web Developer &amp; DevOps Engineer</title>
     <meta
       name="description"
       content="Personal portfolio of Sanjai Magilan, an ECE undergraduate focused on scalable web applications, DevOps, automation, and performance optimization."
@@ -19,9 +19,18 @@
       content="Building scalable systems and automating workflows."
     />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#f6f8fc" />
+    <meta name="theme-color" content="#05060d" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="preload" href="./style.css" as="style" />
     <link rel="stylesheet" href="./style.css" />
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -43,26 +52,29 @@
     </script>
   </head>
   <body>
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+      <defs>
+        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color: var(--cyan)" />
+          <stop offset="100%" style="stop-color: var(--violet)" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="noise" aria-hidden="true"></div>
+    <div class="orb orb--one" aria-hidden="true"></div>
+    <div class="orb orb--two" aria-hidden="true"></div>
+
     <div class="scroll-progress" aria-hidden="true">
       <span id="scroll-progress-bar"></span>
-    </div>
-
-    <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
-      <div class="intro-terminal">
-        <div class="intro-terminal__header">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="intro-terminal__body" id="intro-lines"></div>
-      </div>
     </div>
 
     <!-- Sticky navigation -->
     <header class="site-header">
       <nav class="nav container" aria-label="Primary">
         <a class="brand" href="#home" aria-label="Go to homepage">
-          <span class="brand__mark">&lt;/&gt;</span>
+          <span class="brand__mark">SM</span>
+          <span class="brand__name">Sanjai<em>.</em></span>
         </a>
 
         <div class="nav__links">
@@ -71,68 +83,99 @@
           <a href="#projects">Projects</a>
           <a href="#experience">Leadership</a>
           <a href="#contact">Contact</a>
-          <a href="/resume.pdf" download="Sanjai_Magilan_Resume.pdf">Resume</a>
         </div>
 
-        <button
-          class="theme-toggle"
-          id="theme-toggle"
-          type="button"
-          aria-label="Toggle color theme"
-          title="Toggle color theme"
-        >
-          <span class="theme-toggle__sun">Light</span>
-          <span class="theme-toggle__moon">Dark</span>
+        <a class="nav__resume" href="/resume.pdf" download="Sanjai_Magilan_Resume.pdf">
+          <span>Resume</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
         </button>
       </nav>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Leadership</a>
+        <a href="#contact">Contact</a>
+        <a href="/resume.pdf" download="Sanjai_Magilan_Resume.pdf">Resume</a>
+      </div>
     </header>
 
     <main id="home">
       <!-- Hero -->
       <section class="hero section">
         <div class="container hero__grid">
-          <div class="hero__content reveal">
-            <h1>Sanjai Magilan</h1>
-            <p class="hero__title">
-              <span id="typing-text">Web Developer</span>
-              <span class="typing-cursor" aria-hidden="true"></span>
+          <div class="hero__content reveal-stagger">
+            <p class="eyebrow reveal-item">
+              <span class="eyebrow__dot"></span> Web Developer &amp; DevOps Enthusiast
             </p>
-            <p class="hero__tagline">
-              "Building scalable systems and automating workflows"
+            <h1 class="reveal-item">
+              Sanjai<br /><span class="hero__gradient">Magilan</span>
+            </h1>
+            <p class="hero__tagline reveal-item">
+              I build the pipeline, then I automate myself out of it.
             </p>
-            <p class="hero__copy">
-              Crafting fast web applications, automation
-              tools, and DevOps-friendly systems with a focus on measurable
-              impact.
+            <p class="hero__copy reveal-item">
+              ECE undergraduate crafting fast web applications and
+              DevOps-friendly systems — turning repetitive manual work into
+              automated, measurable outcomes.
             </p>
 
-            <div class="hero__actions">
-              <a class="button button--primary" href="#projects">View Projects</a>
-              <a class="button button--secondary btn-secondary" href="#contact">Get In Touch</a>
-              <a class="button button--secondary" href="/resume.pdf" download="Sanjai_Magilan_Resume.pdf">Resume</a>
+            <div class="hero__actions reveal-item">
+              <a class="button button--primary" href="#projects">
+                View Projects
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a class="button button--ghost" href="#contact">Get In Touch</a>
             </div>
 
-            <ul class="hero__highlights" aria-label="Key highlights">
-              <li>50% automation improvement</li>
-              <li>13-member team lead</li>
-              <li>1st Prize Hackathon</li>
+            <ul class="hero__highlights reveal-item" aria-label="Key highlights">
+              <li><strong>50%</strong> automation gain</li>
+              <li><strong>13</strong> engineers led</li>
+              <li><strong>1st</strong> prize hackathon</li>
             </ul>
           </div>
 
-          <aside class="hero__panel reveal" aria-label="Developer snapshot">
-            <div class="terminal-card">
-              <div class="terminal-card__bar">
-                <span></span>
-                <span></span>
-                <span></span>
+          <aside class="hero__panel reveal-item" aria-label="Deployment pipeline visual">
+            <div class="pipeline-card">
+              <div class="pipeline-card__head">
+                <span class="pipeline-card__label">deploy.pipeline</span>
+                <span class="pipeline-card__status">
+                  <span class="pipeline-card__pulse"></span> passing
+                </span>
               </div>
-              <div class="terminal-card__content">
-                <p>$ whoami</p>
-                <strong>Sanjai Magilan</strong>
-                <p>$ focus --current</p>
-                <strong>Scalable apps, automation, DevOps</strong>
-                <p>$ impact --top</p>
-                <strong>Reduced manual processes by 50%</strong>
+
+              <div class="pipeline">
+                <div class="pipeline__track"><span class="pipeline__runner"></span></div>
+
+                <div class="pipeline__stage" style="--i:0">
+                  <span class="pipeline__node"></span>
+                  <span class="pipeline__stage-label">Commit</span>
+                  <span class="pipeline__stage-sub">git push origin main</span>
+                </div>
+                <div class="pipeline__stage" style="--i:1">
+                  <span class="pipeline__node"></span>
+                  <span class="pipeline__stage-label">Build</span>
+                  <span class="pipeline__stage-sub">docker build · 42s</span>
+                </div>
+                <div class="pipeline__stage" style="--i:2">
+                  <span class="pipeline__node"></span>
+                  <span class="pipeline__stage-label">Test</span>
+                  <span class="pipeline__stage-sub">jest · k6 · 128 passed</span>
+                </div>
+                <div class="pipeline__stage" style="--i:3">
+                  <span class="pipeline__node"></span>
+                  <span class="pipeline__stage-label">Deploy</span>
+                  <span class="pipeline__stage-sub">aws ec2 · rolling update</span>
+                </div>
+                <div class="pipeline__stage pipeline__stage--live" style="--i:4">
+                  <span class="pipeline__node"></span>
+                  <span class="pipeline__stage-label">Live</span>
+                  <span class="pipeline__stage-sub">99.9% uptime</span>
+                </div>
               </div>
             </div>
           </aside>
@@ -143,114 +186,186 @@
       <section class="impact section" id="impact">
         <div class="container">
           <div class="section-heading reveal">
-            <p class="eyebrow">Impact</p>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Impact</p>
             <h2>Measured outcomes, not just activity</h2>
           </div>
 
-          <div class="impact-grid">
-            <article class="impact-card reveal">
-              <span class="impact-card__value">50%</span>
-              <h3>Manual Work Reduced</h3>
-              <p>Automation-first workflows replaced repetitive developer tasks.</p>
-            </article>
-            <article class="impact-card reveal">
-              <span class="impact-card__value">50%</span>
-              <h3>Faster Bug Resolution</h3>
-              <p>Cleaner ownership and streamlined fixes improved delivery speed.</p>
-            </article>
-            <article class="impact-card reveal">
-              <span class="impact-card__value">40%</span>
-              <h3>Productivity Increase</h3>
-              <p>Team systems and tooling boosted coordination and execution.</p>
-            </article>
+          <div class="dashboard glass reveal">
+            <div class="dashboard__item">
+              <div class="ring" data-pct="50" role="img" aria-label="50 percent">
+                <svg viewBox="0 0 120 120">
+                  <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+                  <circle class="ring__fill" cx="60" cy="60" r="52"></circle>
+                </svg>
+                <div class="ring__label"><strong>50<em>%</em></strong></div>
+              </div>
+              <div class="dashboard__meta">
+                <h3>Manual Work Reduced</h3>
+                <p>Automation-first workflows replaced repetitive developer tasks.</p>
+              </div>
+            </div>
+
+            <div class="dashboard__item">
+              <div class="ring" data-pct="50" role="img" aria-label="50 percent">
+                <svg viewBox="0 0 120 120">
+                  <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+                  <circle class="ring__fill" cx="60" cy="60" r="52"></circle>
+                </svg>
+                <div class="ring__label"><strong>50<em>%</em></strong></div>
+              </div>
+              <div class="dashboard__meta">
+                <h3>Faster Bug Resolution</h3>
+                <p>Cleaner ownership and streamlined fixes improved delivery speed.</p>
+              </div>
+            </div>
+
+            <div class="dashboard__item">
+              <div class="ring" data-pct="40" role="img" aria-label="40 percent">
+                <svg viewBox="0 0 120 120">
+                  <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+                  <circle class="ring__fill" cx="60" cy="60" r="52"></circle>
+                </svg>
+                <div class="ring__label"><strong>40<em>%</em></strong></div>
+              </div>
+              <div class="dashboard__meta">
+                <h3>Productivity Increase</h3>
+                <p>Team systems and tooling boosted coordination and execution.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- About -->
       <section class="about section" id="about">
-        <div class="container section-grid">
+        <div class="container">
           <div class="section-heading reveal">
-            <p class="eyebrow">About</p>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> About</p>
             <h2>Building for reliability, speed, and scale</h2>
           </div>
 
-          <div class="content-card reveal">
-            <p>
-              I’m an ECE undergraduate with hands-on experience building
-              scalable web applications and automation workflows. My interests
-              sit at the intersection of development and operations, especially
-              around DevOps, system design, and performance optimization.
-            </p>
-            <p>
-              I enjoy simplifying complex processes, improving delivery speed,
-              and creating systems that are easier for teams to maintain. One
-              of my strongest wins so far was reducing manual processes by 50%
-              through automation.
-            </p>
+          <div class="about-layout">
+            <aside class="identity-card glass reveal">
+              <div class="identity-card__top">
+                <span class="identity-card__mark">SM</span>
+                <span class="identity-card__status">
+                  <span class="identity-card__pulse"></span> open to opportunities
+                </span>
+              </div>
+              <dl class="identity-card__fields">
+                <div>
+                  <dt>Role</dt>
+                  <dd>Web Developer &amp; DevOps Enthusiast</dd>
+                </div>
+                <div>
+                  <dt>Education</dt>
+                  <dd>ECE Undergraduate</dd>
+                </div>
+                <div>
+                  <dt>Focus</dt>
+                  <dd>Automation · System Design · Performance</dd>
+                </div>
+              </dl>
+              <div class="focus-tags">
+                <span>Automation</span>
+                <span>DevOps</span>
+                <span>System Design</span>
+                <span>Performance</span>
+              </div>
+            </aside>
+
+            <div class="content-card glass reveal">
+              <p>
+                I'm an ECE undergraduate with hands-on experience building
+                scalable web applications and automation workflows. My interests
+                sit at the intersection of development and operations, especially
+                around DevOps, system design, and performance optimization.
+              </p>
+              <p>
+                I enjoy simplifying complex processes, improving delivery speed,
+                and creating systems that are easier for teams to maintain. One
+                of my strongest wins so far was reducing manual processes by 50%
+                through automation.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- Skills -->
       <section class="skills section" id="skills">
         <div class="container">
           <div class="section-heading reveal">
-            <p class="eyebrow">Skills</p>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Skills</p>
             <h2>Core tools across development and operations</h2>
+            <p class="section-heading__caption">The stack, from code to infrastructure.</p>
           </div>
 
-          <div class="skills-grid">
-            <article class="skill-group reveal">
-              <h3>Languages</h3>
+          <div class="skill-stack">
+            <article class="skill-layer reveal">
+              <span class="skill-layer__node"></span>
+              <div class="skill-layer__label">
+                <h3>Languages</h3>
+                <span>Core languages</span>
+              </div>
               <ul>
-                <li>Python</li>
-                <li>C</li>
-                <li>C++</li>
-                <li>Java</li>
-                <li>Bash</li>
+                <li>Python</li><li>C</li><li>C++</li><li>Java</li><li>Bash</li>
               </ul>
             </article>
-            <article class="skill-group reveal">
-              <h3>Web</h3>
+
+            <article class="skill-layer reveal">
+              <span class="skill-layer__node"></span>
+              <div class="skill-layer__label">
+                <h3>Web</h3>
+                <span>Application layer</span>
+              </div>
               <ul>
-                <li>MERN Stack</li>
-                <li>EJS</li>
-                <li>REST APIs</li>
+                <li>MERN Stack</li><li>EJS</li><li>REST APIs</li>
               </ul>
             </article>
-            <article class="skill-group reveal">
-              <h3>DevOps</h3>
+
+            <article class="skill-layer reveal">
+              <span class="skill-layer__node"></span>
+              <div class="skill-layer__label">
+                <h3>DevOps</h3>
+                <span>Ship &amp; automate</span>
+              </div>
               <ul>
-                <li>Docker</li>
-                <li>CI/CD</li>
-                <li>Git</li>
-                <li>GitHub</li>
-                <li>GitHub Actions</li>
-                <li>AWS (EC2, S3)</li>
-                <li>Jenkins</li>
-                <li>kubernetes</li>
-                <!-- <li>Nginx</li> -->
-                <li>Bash</li>
+                <li>Docker</li><li>CI/CD</li><li>Git</li><li>GitHub Actions</li>
+                <li>AWS (EC2, S3)</li><li>Jenkins</li><li>Kubernetes</li><li>Bash</li>
               </ul>
             </article>
-            <article class="skill-group reveal">
-              <h3>Testing</h3>
+
+            <article class="skill-layer reveal">
+              <span class="skill-layer__node"></span>
+              <div class="skill-layer__label">
+                <h3>Testing</h3>
+                <span>Quality gates</span>
+              </div>
               <ul>
-                <li>Jest</li>
-                <li>k6</li>
+                <li>Jest</li><li>k6</li>
               </ul>
             </article>
-            <article class="skill-group reveal">
-              <h3>Database</h3>
+
+            <article class="skill-layer reveal">
+              <span class="skill-layer__node"></span>
+              <div class="skill-layer__label">
+                <h3>Database</h3>
+                <span>Data layer</span>
+              </div>
               <ul>
-                <li>MySQL</li>
-                <li>MongoDB</li>
+                <li>MySQL</li><li>MongoDB</li>
               </ul>
             </article>
-            <article class="skill-group reveal">
-              <h3>Systems</h3>
+
+            <article class="skill-layer reveal">
+              <span class="skill-layer__node"></span>
+              <div class="skill-layer__label">
+                <h3>Systems</h3>
+                <span>Runtime &amp; tuning</span>
+              </div>
               <ul>
-                <li>Linux customization</li>
-                <li>Performance tuning</li>
+                <li>Linux customization</li><li>Performance tuning</li>
               </ul>
             </article>
           </div>
@@ -261,29 +376,23 @@
       <section class="projects section" id="projects">
         <div class="container">
           <div class="section-heading reveal">
-            <p class="eyebrow">Projects</p>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Projects</p>
             <h2>Projects designed around impact and execution</h2>
           </div>
 
           <div class="projects-grid">
-            <article class="project-card reveal">
-              <img
-                class="project-card__thumb"
-                loading="lazy"
-                decoding="async"
-                alt="Abstract terminal illustration for AutoGitPush"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' rx='28' fill='%230f172a'/%3E%3Cpath d='M64 78h512' stroke='%237c3aed' stroke-width='10' opacity='.38'/%3E%3Crect x='64' y='116' width='206' height='24' rx='12' fill='%23111b2e'/%3E%3Crect x='64' y='164' width='350' height='24' rx='12' fill='%231e293b'/%3E%3Crect x='64' y='212' width='286' height='24' rx='12' fill='%232563eb' opacity='.72'/%3E%3Ccircle cx='90' cy='78' r='8' fill='%237c3aed'/%3E%3Ccircle cx='118' cy='78' r='8' fill='%23f59e0b'/%3E%3Ccircle cx='146' cy='78' r='8' fill='%230ea5e9'/%3E%3C/svg%3E"
-              />
+            <article class="project-card glass reveal">
+              <div class="project-card__bar"></div>
               <div class="project-card__body">
-                <div class="project-card__top">
-                  <div class="project-card__title-block">
-                    <div class="project-card__title-row">
-                      <h3>AutoGitPush</h3>
-                      <a href="https://github.com/Sanjai-Magilan/AutoGitPush" target="_blank" rel="noreferrer">
-                        GitHub
-                      </a>
-                    </div>
-                  </div>
+                <div class="project-card__status">
+                  <span class="project-card__pulse"></span> build passing
+                </div>
+                <div class="project-card__title-row">
+                  <h3>AutoGitPush</h3>
+                  <a href="https://github.com/Sanjai-Magilan/AutoGitPush" target="_blank" rel="noreferrer">
+                    GitHub
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M17 7H8m9 0v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </a>
                 </div>
                 <p>
                   Automated Git workflows using Bash to remove repetitive steps
@@ -292,29 +401,23 @@
                 <ul class="project-metrics">
                   <li>Reduced manual effort by 50%</li>
                   <li>VS Code extension in progress</li>
-                  <li>Bash-powered automation workflow</li>
+                  <li>Bash-powered automation</li>
+                </ul>
+                <ul class="project-tech">
+                  <li>Bash</li><li>Git</li><li>Shell Scripting</li>
                 </ul>
               </div>
             </article>
 
-            <article class="project-card reveal">
-              <img
-                class="project-card__thumb"
-                loading="lazy"
-                decoding="async"
-                alt="Abstract dashboard illustration for Queue Management System"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' rx='28' fill='%230f172a'/%3E%3Crect x='68' y='68' width='504' height='224' rx='24' fill='%23111b2e'/%3E%3Crect x='100' y='106' width='112' height='112' rx='20' fill='%237c3aed' opacity='.78'/%3E%3Crect x='242' y='106' width='112' height='112' rx='20' fill='%232563eb' opacity='.78'/%3E%3Crect x='384' y='106' width='112' height='112' rx='20' fill='%230ea5e9' opacity='.78'/%3E%3Cpath d='M100 256h396' stroke='%23b794ff' stroke-width='12' stroke-linecap='round' opacity='.52'/%3E%3C/svg%3E"
-              />
+            <article class="project-card glass reveal">
+              <div class="project-card__bar project-card__bar--amber"></div>
               <div class="project-card__body">
-                <div class="project-card__top">
-                  <div class="project-card__title-block">
-                    <div class="project-card__title-row">
-                      <h3>Queue Management System</h3>
-                    </div>
-                    <div class="project-badges" aria-label="Project highlights">
-                      <span class="project-badge project-badge--winner">🏆 Hackathon Winner</span>
-                    </div>
-                  </div>
+                <div class="project-card__status">
+                  <span class="project-card__pulse project-card__pulse--amber"></span> 1st prize
+                </div>
+                <div class="project-card__title-row">
+                  <h3>Queue Management System</h3>
+                  <span class="project-badge project-badge--winner">🏆 Hackathon Winner</span>
                 </div>
                 <p>
                   Login-free token system with a real-time backend using REST
@@ -322,31 +425,24 @@
                 </p>
                 <ul class="project-metrics">
                   <li>Reduced queue confusion by 50%</li>
-                  <li>1st Prize hackathon-winning solution</li>
+                  <li>1st prize hackathon-winning solution</li>
                   <li>Real-time backend using REST APIs</li>
+                </ul>
+                <ul class="project-tech">
+                  <li>Node.js</li><li>Express</li><li>MongoDB</li><li>REST API</li>
                 </ul>
               </div>
             </article>
 
-            <article class="project-card reveal">
-              <img
-                class="project-card__thumb"
-                loading="lazy"
-                decoding="async"
-                alt="Abstract system layout illustration for Temple Management System"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' rx='28' fill='%230f172a'/%3E%3Crect x='84' y='92' width='472' height='176' rx='28' fill='%23111b2e'/%3E%3Crect x='116' y='124' width='170' height='112' rx='18' fill='%231e293b'/%3E%3Crect x='306' y='124' width='94' height='112' rx='18' fill='%230ea5e9' opacity='.78'/%3E%3Crect x='420' y='124' width='104' height='112' rx='18' fill='%237c3aed' opacity='.88'/%3E%3Cpath d='M116 74h142' stroke='%23f59e0b' stroke-width='12' stroke-linecap='round' opacity='.72'/%3E%3C/svg%3E"
-              />
+            <article class="project-card glass reveal">
+              <div class="project-card__bar project-card__bar--violet"></div>
               <div class="project-card__body">
-                <div class="project-card__top">
-                  <div class="project-card__title-block">
-                    <div class="project-card__title-row">
-                      <h3>Temple Management System</h3>
-                    </div>
-                    <div class="project-badges" aria-label="Project highlights">
-                      <span class="project-badge project-badge--client">💼 Client Project</span>
-                      <span class="project-badge project-badge--lead">👨‍💻 Team Lead</span>
-                    </div>
-                  </div>
+                <div class="project-card__status">
+                  <span class="project-card__pulse project-card__pulse--violet"></span> in production
+                </div>
+                <div class="project-card__title-row">
+                  <h3>Temple Management System</h3>
+                  <span class="project-badge project-badge--client">💼 Client</span>
                 </div>
                 <p>
                   Led a 13-member team to build a booking and donation system
@@ -355,7 +451,10 @@
                 <ul class="project-metrics">
                   <li>Improved productivity by 40%</li>
                   <li>Reduced bug resolution time by 50%</li>
-                  <li>Delivered booking, donation, and access control flows</li>
+                  <li>Booking, donation &amp; access control flows</li>
+                </ul>
+                <ul class="project-tech">
+                  <li>MERN</li><li>Google OAuth</li><li>RBAC</li>
                 </ul>
               </div>
             </article>
@@ -363,15 +462,17 @@
         </div>
       </section>
 
+      <!-- Leadership -->
       <section class="experience section" id="experience">
         <div class="container two-column">
           <div class="section-heading reveal">
-            <p class="eyebrow">Leadership</p>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Leadership</p>
             <h2>Leading teams, events, and execution</h2>
           </div>
 
-          <div class="stack">
-            <article class="timeline-card reveal">
+          <div class="stack stack--rail">
+            <article class="timeline-card glass reveal">
+              <span class="timeline-card__node"></span>
               <div class="timeline-card__meta">President</div>
               <h3>IoT Club</h3>
               <p>
@@ -380,34 +481,61 @@
               </p>
             </article>
 
-            <article class="timeline-card reveal">
+            <article class="timeline-card glass reveal">
+              <span class="timeline-card__node"></span>
               <div class="timeline-card__meta">Organizer</div>
               <h3>Multiverse Hackathon</h3>
               <p>
-                Managed logistics and coordination for a 30-hour national-level hackathon, ensuring seamless execution and 100% participant satisfaction.
+                Managed logistics and coordination for a 30-hour national-level
+                hackathon, ensuring seamless execution and 100% participant
+                satisfaction.
               </p>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- Certifications -->
       <section class="certifications section" id="certifications">
         <div class="container">
           <div class="section-heading reveal">
-            <p class="eyebrow">Certifications</p>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Certifications</p>
             <h2>Current learning and credentials</h2>
           </div>
 
           <div class="cert-grid">
-            <article class="content-card reveal">
+            <article class="cert-badge glass reveal">
+              <div class="ring ring--sm" data-pct="20" role="img" aria-label="20 percent complete">
+                <svg viewBox="0 0 120 120">
+                  <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+                  <circle class="ring__fill" cx="60" cy="60" r="52"></circle>
+                </svg>
+                <div class="ring__label"><strong>20<em>%</em></strong></div>
+              </div>
               <h3>AWS Cloud Practitioner</h3>
               <p>In Progress</p>
             </article>
-            <article class="content-card reveal">
+
+            <article class="cert-badge glass reveal">
+              <div class="ring ring--sm" data-pct="100" role="img" aria-label="N5 completed">
+                <svg viewBox="0 0 120 120">
+                  <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+                  <circle class="ring__fill" cx="60" cy="60" r="52"></circle>
+                </svg>
+                <div class="ring__label ring__label--done">✓</div>
+              </div>
               <h3>JLPT N5</h3>
-              <p>N4 in progress</p>
+              <p>Completed · N4 pursuing</p>
             </article>
-            <article class="content-card reveal">
+
+            <article class="cert-badge glass reveal">
+              <div class="ring ring--sm" data-pct="100" role="img" aria-label="100 percent complete">
+                <svg viewBox="0 0 120 120">
+                  <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+                  <circle class="ring__fill" cx="60" cy="60" r="52"></circle>
+                </svg>
+                <div class="ring__label ring__label--done">✓</div>
+              </div>
               <h3>NPTEL HCI</h3>
               <p>IIT Guwahati</p>
             </article>
@@ -418,55 +546,33 @@
       <!-- Contact -->
       <section class="contact section" id="contact">
         <div class="container">
-          <div class="contact-simple reveal">
-            <h2>Get in touch</h2>
-            <p class="contact-simple__copy">
+          <div class="contact-panel glass reveal">
+            <span class="contact-panel__radar" aria-hidden="true"></span>
+
+            <p class="eyebrow eyebrow--center"><span class="eyebrow__dot"></span> Contact · status: online</p>
+            <h2>Ready to deploy the next project</h2>
+            <p class="contact-panel__copy">
               Open to opportunities, collaborations, and building meaningful
               systems.
             </p>
 
-            <div class="contact-terminal" aria-label="Contact details">
-              <p class="contact-terminal__line">
-                <span class="contact-terminal__prompt">&gt; contact --email</span>
-              </p>
-              <a class="contact-link-line" href="mailto:sanjaimagilan@gmail.com">
-                <span>sanjaimagilan@gmail.com</span>
+            <div class="contact-links">
+              <a class="contact-icon" href="mailto:sanjaimagilan@gmail.com" title="Email" aria-label="Email sanjaimagilan@gmail.com">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4V6Zm0 0 8 7 8-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
-              <p class="contact-terminal__line">
-                <span class="contact-terminal__prompt">&gt; social</span>
-              </p>
-              <a
-                class="contact-link-line"
-                href="https://github.com/Sanjai-Magilan"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>GitHub</span>
+              <a class="contact-icon" href="https://github.com/Sanjai-Magilan" target="_blank" rel="noreferrer" title="GitHub" aria-label="GitHub profile">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.4 9.4 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.35 4.68-4.58 4.93.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2Z" fill="currentColor"/></svg>
               </a>
-              <a
-                class="contact-link-line"
-                href="https://www.linkedin.com/in/sanjai-magilan-sadha-sivam-5b1118279/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span>LinkedIn</span>
+              <a class="contact-icon" href="https://www.linkedin.com/in/sanjai-magilan-sadha-sivam-5b1118279/" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn profile">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6.94 6.5a1.94 1.94 0 1 1 0-3.88 1.94 1.94 0 0 1 0 3.88ZM5.1 8.75h3.68V20H5.1V8.75Zm6.28 0h3.53v1.54h.05c.49-.93 1.7-1.9 3.5-1.9 3.75 0 4.44 2.47 4.44 5.68V20h-3.68v-5.42c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.86V20h-3.67V8.75Z" fill="currentColor"/></svg>
               </a>
-              <p class="contact-terminal__hint">click to open</p>
-              <p class="contact-terminal__line contact-terminal__cursor-line" aria-hidden="true">
-                <span class="contact-terminal__prompt">&gt;</span>
-                <span class="terminal-cursor"></span>
-              </p>
             </div>
+            <p class="contact-panel__email">sanjaimagilan@gmail.com</p>
 
-            <div class="contact-simple__actions">
-              <a
-                class="button button--primary"
-                href="/resume.pdf"
-                download="Sanjai_Magilan_Resume.pdf"
-              >
-                Download Resume
-              </a>
-            </div>
+            <a class="button button--primary" href="/resume.pdf" download="Sanjai_Magilan_Resume.pdf">
+              Download Resume
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </div>
         </div>
       </section>
@@ -475,10 +581,18 @@
     <footer class="footer">
       <div class="container footer__content">
         <p>© 2026 Sanjai Magilan.</p>
-        <p>There are many hidden gems to discover! Hope a real dev will find them!</p>
         <a href="#home">Back to top</a>
       </div>
     </footer>
+
+    <!-- Hidden game modal (secret word: "gun", typed anywhere on the page) -->
+    <div class="game-modal" id="game-modal" aria-hidden="true">
+      <div class="game-modal__backdrop"></div>
+      <div class="game-modal__content">
+        <button class="game-modal__close" id="game-modal-close" aria-label="Close">✕</button>
+        <iframe id="game-iframe" src="" allow="autoplay; fullscreen" title="Secret game"></iframe>
+      </div>
+    </div>
 
     <script src="./script.js" defer></script>
   </body>
